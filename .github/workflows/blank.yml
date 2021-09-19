@@ -1,0 +1,47 @@
+;-----------------------------------------------------
+;#includes
+#include-once
+#include <MsgBoxConstants.au3>
+#include <GuiFlatButton.au3>
+;-----------------------------------------------------
+
+
+_Main()
+
+
+Func _Main()
+    $GUI_Main = GUICreate("Main " & FileGetVersion(@ScriptFullPath), 200, 200, 10, 10, $WS_POPUPWINDOW)
+    $BTN_Show_Page_2 = GuiFlatButton_Create("Show Page 2", 10, 10, 100, 38)
+    Local $Param_1[12] = [0x0096a1, 0xFFFFFF, 0x0096a1, 0x0096a1, 0xFFFFFF, 0x0096a1, 0xE43D35, 0xFFFFFF, 0xE43D35, 0xFF3D35, 0xFFFFFF, 0xFF3D35]
+    GuiFlatButton_SetColorsEx($BTN_Show_Page_2, $Param_1)
+    GUISetState()
+    While 1
+        $iMsg_Main = GUIGetMsg()
+        Select
+            Case $iMsg_Main = $GUI_EVENT_CLOSE 
+                Continueloop
+            Case $iMsg_Main = $BTN_Show_Page_2
+                GUIDelete()
+                _Page_2()
+                ExitLoop
+        EndSelect
+    WEnd
+EndFunc
+
+
+Func _Page_2()
+    $GUI_HWNDPARENT2 = GUICreate("Page 2 " & FileGetVersion(@ScriptFullPath), 200, 200, 80, 80-1, $WS_POPUPWINDOW)
+    $BTN_Exit = GuiFlatButton_Create("Exit", 10, 10, 100, 38)
+    Local $Param_2[12] = [0x0096a1, 0xFFFFFF, 0x0096a1, 0x0096a1, 0xFFFFFF, 0x0096a1, 0xE43D35, 0xFFFFFF, 0xE43D35, 0xFF3D35, 0xFFFFFF, 0xFF3D35]
+    GuiFlatButton_SetColorsEx($BTN_Exit, $Param_2)
+    GUISetState()
+    While 1
+        $iMsg_Main = GUIGetMsg()
+        Select
+            Case $iMsg_Main = $GUI_EVENT_CLOSE 
+                Continueloop
+            Case $iMsg_Main = $BTN_Exit 
+                Exit
+        EndSelect
+    WEnd
+EndFunc
